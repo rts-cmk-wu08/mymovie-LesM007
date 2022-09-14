@@ -11,6 +11,10 @@ document.addEventListener("DOMContentLoaded", () =>{
 
             console.log(data)
 
+        let link = document.createElement("div")
+        section.innerHTML = `
+        <div><h2>Now Showing</h2>
+        <button>See more</button></div>`
 
     data.results.forEach(result => {
         let link = document.createElement("a")
@@ -21,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         link.innerHTML = `
         <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
         <li>${result.title}</li>
+        <div><i class="fa-sharp fa-solid fa-star"></i><span>${newRat}</span>/10 IMDb</div>
        
             `
         document.body.append(link)
