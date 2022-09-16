@@ -1,93 +1,107 @@
 document.addEventListener("DOMContentLoaded", () =>{
 
     let wrapper = document.querySelector("#wrapper")
-    let popSec = document.createElement("section")
     let imgpath = "https://image.tmdb.org/t/p/original"
-    let key = "d27cfb6baa191e1cd0eaa5f32b9e1d80"
-        console.log(wrapper)
+    let baseURL = "https://api.themoviedb.org/3"
+    let key = "d27cfb6baa191e1cd0eaa5f32b9e1d80&language=en-US&page=1"
+    
+    let headerElm = document.createElement("header")
+    headerElm.classList.add("header")
+    wrapper.append(headerElm)
 
-    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${key}&language=en-US&page=1`)
+    let mainElm = document.createElement("main")
+    wrapper.append(mainElm)
+
+    let footerElm = document.createElement("footer")
+    wrapper.append(footerElm)
+
+    headerElm.innerHTML= `
+        <h1>MyMovies</h1>
+        <button>Switch</button>
+        `
+
+    let nowElm = document.createElement("section")
+    nowElm.classList.add("now_playing")
+    mainElm.append(nowElm)
+
+    let nowHeader = document.createElement("header")
+    nowHeader.innerHTML=`
+    <h2>Now Showing</h2>
+    <a href>See more</a>
+    `
+    nowElm.append(nowHeader)
+
+    let nowMovies = document.createElement("div")
+    nowElm.append(nowMovies)
+
+    fetch(`${baseURL}/movie/now_playing?api_key=${key}`)
         .then(response => response.json())
         .then(data => {
 
             console.log(data)
 
-        let myHeader = document.createElement("header")    //konstruerer html med js
-        let headDiv = document.createElement("div")
-        let myH1 = document.createElement("h1")
-        let headButton = document.createElement("button")
-        let myMain = document.createElement("main")
-        let wrapDiv = document.createElement("div")
-        let myH2 = document.createElement("h2")
-        let navButton = document.createElement("button")
-        let nowList = document.createElement("div")
-        let footer = document.createElement("footer")
-        
-        myH1.innerHTML = "MyMovies"
-        headButton.innerHTML = "See more"
-        myH2.innerHTML = "Now Showing"
-        navButton.innerHTML = "See more"
-
-        wrapper.append(myHeader)
-        myHeader.append(headDiv)
-        headDiv.append(myH1)
-        headDiv.append(headButton)
-        wrapper.append(myMain)
-        myMain.append(wrapDiv)
-        wrapDiv.append(myH2)
-        wrapDiv.append(navButton)
-        myMain.append(nowList)
-        myMain.append(popSec)
-        wrapper.append(footer)
-
-    data.results.forEach(result => {
-        let link = document.createElement("a")
-        let rat = result.vote_average
-        let newRat = Math.round(rat* 10)/ 10
-        link.classList.add("now_img")
-        link.setAttribute("href", `details.html?title=${result.id}`)        //id er bedre til videre
-        link.innerHTML = `
-        <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
-        <p>${result.title}</p>
-        <div><i class="fa-solid fa-sharp fa-star"></i><span>${newRat}</span>/10 IMDb</div>
+        data.results.forEach(result => {
+            let link = document.createElement("a")
+            let rat = result.vote_average
+            let newRat = Math.round(rat* 10)/ 10
+            link.classList.add("now_img")
+            link.setAttribute("href", `details.html?id=${result.id}`)        //id er bedre til videre
+            link.innerHTML = `
+            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
+            <div><h3>${result.title}</h3>
+            <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
+            </div>
         `
-        nowList.append(link)
+        nowMovies.append(link)
 
             });
         });
 
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
+    let popElm = document.createElement("section")
+    popElm.classList.add("pop_movie")
+    mainElm.append(popElm)
+
+    let popHeader = document.createElement("header")
+    popHeader.innerHTML = `
+    <h2>Popular</h2>
+    <a href>See more</a>
+    `
+
+    popElm.append(popHeader)
+
+    let popMovies = document.createElement("div")
+    popElm.append(popMovies)
+
+    fetch(`${baseURL}/movie/popular?api_key=${key}`)
         .then(response => response.json())
         .then(data => {
 
             console.log(data)
 
-        let popDiv = document.createElement("div")
-        let poplinDiv = document.createElement("h2")
-        let popButton = document.createElement("button")
-        let popList = document.createElement("div")
-
-        poplinDiv.innerHTML = "Popular"
-        popButton.innerHTML = "See more"
-
-        popSec.append(popDiv)
-        popDiv.append(poplinDiv)
-        popDiv.append(popButton)
-        popSec.append(popList)
-
-    data.results.forEach(result =>{
-        let link = document.createElement("a")
-        let rat = result.vote_average
-        let newRat = Math.round(rat* 10)/ 10
-        link.classList.add("now_img")
-        link.setAttribute("href", `details.html?title=${result.id}`)
-        link.innerHTML = `
-        <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
-        <p>${result.title}</p>
-        <div><i class="fa-solid fa-sharp fa-star"></i><span>${newRat}</span>/10 IMDb</div>
-        
+        data.results.forEach(result =>{
+            let link = document.createElement("a")
+            let rat = result.vote_average
+            let newRat = Math.round(rat* 10)/ 10
+            link.classList.add("now_img2")
+            link.setAttribute("href", `details.html?id=${result.id}`)
+            link.innerHTML = `
+            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
+            <div><h3>${result.title}</h3>
+            <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
+            <p class="genres"></p>
+            <p></p></div>
         `
-        popList.append(link)
+        popMovies.append(link)
+
+        let genButton = link.querySelector(".genres")
+
+        //console.log(genButton)
+        result.genre_ids.forEach(id =>{
+            let genList = genres.find(genre => genre.id == id)
+            console.log(genList)
+            let genSpan = document.createElement("span")
+            genSpan.innerText = genList.name
+        })
     })
         })
         });
