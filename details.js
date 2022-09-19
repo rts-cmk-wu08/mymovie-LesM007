@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     let key = "d27cfb6baa191e1cd0eaa5f32b9e1d80&language=en-US&page=1"
 
     let headerElm = document.createElement("header")
-    headerElm.classList.add("header")
     wrapper.append(headerElm)
 
     let mainElm = document.createElement("main")
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     <p><i class="fa-regular fa-arrow-left"></i></p>
     <p><i class="fa-light fa-toggle-large-off"></i></p>`
 
-    backElm.append(backHeader)
+    headerElm.append(backHeader)
 
     let detailElm = document.createElement("section")
     detailElm.classList.add("detail_info")
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
         <p class="genres"></p>
         <p>Length ${run}h ${time}min</p>
-        <p></p>
+        <p class="lang"></p>
         `
     detailElm.append(detailHead)
 
@@ -73,5 +72,17 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     genButton.append(genSpan)
     });
+
+    let lanInfo = detailHead.querySelector(".lang")
+
+    //console.log(lanInfo)
+
+        data.spoken_languages.forEach(lang => {         // værdien fra API/katagori inspekt
+            let lanSpan = document.createElement("span")
+            lanSpan.classList.add("lang_span")
+            lanSpan.innerText = lang.name
+    
+    lanInfo.append(lanSpan)
+        });
         })
 })
