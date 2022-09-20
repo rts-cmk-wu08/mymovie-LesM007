@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     let nowHeader = document.createElement("header")
     nowHeader.innerHTML=`
     <h2>Now Showing</h2>
-    <button><a href>See more</a></button>
+    <a class="btn" href>See more</a>
     `
     nowElm.append(nowHeader)
 
@@ -42,14 +42,14 @@ document.addEventListener("DOMContentLoaded", () =>{
 
         data.results.forEach(result => {
             let link = document.createElement("a")
+            link.classList.add("now_card")
             let rat = result.vote_average
             let newRat = Math.round(rat* 10)/ 10
-            link.classList.add("now_img")
             link.setAttribute("href", `details.html?id=${result.id}`)        //id er bedre til videre
             link.innerHTML = `
-            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
-            <div><h3>${result.title}</h3>
-            <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
+            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}" class="now_img">
+            <div class="now_info"><h3>${result.title}</h3>
+            <p><i class="fa-solid fa-star"></i>${newRat}/10 IMDb</p>
             </div>
         `
         nowMovies.append(link)
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     let popHeader = document.createElement("header")
     popHeader.innerHTML = `
     <h2>Popular</h2>
-    <a href>See more</a>
+    <a class="btn" href>See more</a>
     `
 
     popElm.append(popHeader)
@@ -82,12 +82,12 @@ document.addEventListener("DOMContentLoaded", () =>{
             let link = document.createElement("a")
             let rat = result.vote_average
             let newRat = Math.round(rat* 10)/ 10
-            link.classList.add("now_img2")
+            link.classList.add("now_img")
             link.setAttribute("href", `details.html?id=${result.id}`)
             link.innerHTML = `
             <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
             <div><h3>${result.title}</h3>
-            <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
+            <p><i class="fa-solid fa-star"></i>${newRat}/10 IMDb</p>
             <p class="genres"></p>
             <p></p></div>
         `

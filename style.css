@@ -20,12 +20,21 @@ img {
     height: auto;
     display: block;
 }
+h2{
+    font-size: 16px;
+}
+h3{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
 a{
     text-decoration: none;
 }
 .index_header{
     font-family: 'Merriweather', serif;
-    color: #110E47;
+    color: #000000;
     font-size: 16px;
     font-weight: 700;
     padding: 0 1.5em;
@@ -41,23 +50,36 @@ a{
     font-size: 16px;
     font-weight: 700;
     display: grid;
-    grid-template-columns: 1fr 8em;
+    grid-template-columns: 1fr 4em;
     align-items: center;
     padding: 0 1.5em;
 }
-.now_playing>header>button{
-    font-family: 'Mulish', sans-serif;
-    background-color: #ffffff;
-    font-size: 10px;
-    font-weight: 300;
-    border-radius: 22px;
-    border-color: #AAA9B1;
-    max-width: 61px;
-    max-height: 21px;
+.now_playing>div{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
 }
+.now_card{
+    margin: 1%;
+    min-width: 143px;
+    min-height: 283px;
+}
+.now_img {
+    border-radius: 3%;
+}
+.now_info{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color: #9c9c9c;
+}
+
 .movie_popular{}
-.now_img {}
-.switch {       /* toggle switch darkmode */
+
+                         /* toggle switch darkmode */
+.switch {      
     position: relative;
     display: inline-block;
     width: 38px;
@@ -80,7 +102,6 @@ a{
     -webkit-transition: .4s;
     transition: .4s;
   }
-
 .slider:before {
     position: absolute;
     content: "";
@@ -110,4 +131,20 @@ a{
   .slider.round:before {
     border-radius: 50%;
   }
-  @media only screen and (max-width:758px) {}
+
+  .btn{
+    border: 1px solid;
+    border-radius: 22px;
+    font-family: 'Mulish', sans-serif;
+    background-color: #ffffff;
+    font-size: 10px;
+    font-weight: 300;
+    border-color: #AAA9B1;
+    /*min-width: 61px;
+    min-height: 21px;*/
+  }
+  .fa-solid.fa-star{
+    color: #FFC319;
+    display: inline-block;
+    size: 12px;
+  }
