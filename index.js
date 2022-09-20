@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     let key = "d27cfb6baa191e1cd0eaa5f32b9e1d80&language=en-US&page=1"
     
     let headerElm = document.createElement("header")
-    headerElm.classList.add("header")
+    headerElm.classList.add("index_header")
     wrapper.append(headerElm)
 
     let mainElm = document.createElement("main")
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     headerElm.innerHTML= `
         <h1>MyMovies</h1>
-        <button>Switch</button>
+        <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
         `
 
     let nowElm = document.createElement("section")
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     let nowHeader = document.createElement("header")
     nowHeader.innerHTML=`
     <h2>Now Showing</h2>
-    <a href>See more</a>
+    <button><a href>See more</a></button>
     `
     nowElm.append(nowHeader)
 
