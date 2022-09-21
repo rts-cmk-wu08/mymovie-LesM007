@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", () =>{
     let footerElm = document.createElement("footer")
     wrapper.append(footerElm)
 
+    footerElm.innerHTML=`
+    <p><i class="fa-solid fa-film"></i></p>
+    <p><i class="fa-regular fa-ticket-simple"></i></p>
+    <p><i class="fa-regular fa-bookmark"></i></p>
+    `
+
     headerElm.innerHTML= `
         <h1>MyMovies</h1>
         <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
@@ -82,14 +88,13 @@ document.addEventListener("DOMContentLoaded", () =>{
             let link = document.createElement("a")
             let rat = result.vote_average
             let newRat = Math.round(rat* 10)/ 10
-            link.classList.add("now_img")
+            link.classList.add("pop_card")
             link.setAttribute("href", `details.html?id=${result.id}`)
             link.innerHTML = `
-            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}">
-            <div><h3>${result.title}</h3>
+            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}" class="pop_img">
+            <div class="pop_info"><h3>${result.title}</h3>
             <p><i class="fa-solid fa-star"></i>${newRat}/10 IMDb</p>
-            <p class="genres"></p>
-            <p></p></div>
+            <p class="genres"></p></div>
         `
         popMovies.append(link)
 
