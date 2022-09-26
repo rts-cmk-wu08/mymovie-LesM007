@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     footerElm.innerHTML=`
     <p><i class="fa-solid fa-film"></i></p>
-    <p><i class="fa-regular fa-ticket-simple"></i></p>
+    <p><i class="fa-regular fa-ticket"></i></p>
     <p><i class="fa-regular fa-bookmark"></i></p>
     `
 
@@ -106,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             console.log(genList)
             let genSpan = document.createElement("span")
             genSpan.innerText = genList.name
+            genButton.append(genSpan)
         })
     })
         })

@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     mainElm.append(backElm)
 
     let backHeader = document.createElement("header")
+    backHeader.classList.add("detail_header")
     backHeader.innerHTML = `
     <p><i class="fa-regular fa-arrow-left"></i></p>
     <label class="switch"><input type="checkbox"><span class="slider round"></span></label>`
@@ -38,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () =>{
         .then(data => {
             console.log(data)
 
-        let link = document.createElement("img")
-        link.classList.add("now_img")
+        let link = document.createElement("div")
+        link.classList.add("detail_img")
         link.innerHTML = `
         <img src="${imgpath+data.poster_path}" alt="movie poster ${data.title}">
         `
