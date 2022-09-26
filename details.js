@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     let mainElm = document.createElement("main")
     wrapper.append(mainElm)
 
-    let footerElm = document.createElement("footer")
-    wrapper.append(footerElm)
-
     let backElm = document.createElement("section")
     backElm.classList.add("back_poster")
     mainElm.append(backElm)
@@ -24,15 +21,13 @@ document.addEventListener("DOMContentLoaded", () =>{
     let backHeader = document.createElement("header")
     backHeader.classList.add("detail_header")
     backHeader.innerHTML = `
-    <p><i class="fa-regular fa-arrow-left"></i></p>
+    <p><i class="fa-solid fa-arrow-left-long"></i></p>
     <label class="switch"><input type="checkbox"><span class="slider round"></span></label>`
 
     headerElm.append(backHeader)
 
     let detailElm = document.createElement("section")
-    detailElm.classList.add("detail_info")
     mainElm.append(detailElm)
-
 
     fetch(`${baseURL}/movie/${movie_id}?api_key=${key}`)
         .then(response => response.json())
@@ -55,12 +50,20 @@ document.addEventListener("DOMContentLoaded", () =>{
         detailHead.innerHTML =`
         <h1>${data.title}</h1>
         <p><i class="fa-regular fa-bookmark"></i></p>
-        <p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
+        <div class="detail_specs"><p><i class="fa-solid fa-sharp fa-star"></i>${newRat}/10 IMDb</p>
         <p class="genres"></p>
         <p>Length ${run}h ${time}min</p>
-        <p class="lang"></p>
+        <p class="lang"></p></div>
         `
     detailElm.append(detailHead)
+
+        let detailMain = document.createElement("div")
+        detailMain.classList.add("detail_overview")
+        detailElm.append(detailMain)
+            detailMain.innerHTML =`
+            <h2>Description</h2>
+            <p>${data.overview}</p>
+            `
 
     let genButton = detailHead.querySelector(".genres")
 
@@ -86,4 +89,15 @@ document.addEventListener("DOMContentLoaded", () =>{
     lanInfo.append(lanSpan)
         });
         })
+
+    fetch(`${baseURL}/credit/${credit_id}?api_key=
+
+    let detailCast = document.createElement("div")
+    detailElm.append(detailCast)
+        detailCast.innerHTML =`
+            <h2>Cast</h2>
+            <a class="btn" href>See more</a>
+
+            `
+    )
 })
