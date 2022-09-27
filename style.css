@@ -122,6 +122,7 @@ footer{
 }
 .genres>span{
     display: inline-block;
+    text-transform: uppercase;
     background-color: #DBE3FF;
     border-radius: 22px;
     min-width: 61px;

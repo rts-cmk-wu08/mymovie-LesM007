@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () =>{
 
+   
     let wrapper = document.querySelector("#wrapper")
     let imgpath = "https://image.tmdb.org/t/p/original"
     let baseURL = "https://api.themoviedb.org/3"
