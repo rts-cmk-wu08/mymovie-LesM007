@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     let backHeader = document.createElement("header")
     backHeader.classList.add("detail_header")
     backHeader.innerHTML = `
-    <p><i class="fa-solid fa-arrow-left-long"></i></p>
+    <a href="index.html"><i class="fa-solid fa-arrow-left-long"></i></a>
     <label class="switch"><input type="checkbox"><span class="slider round"></span></label>`
 
     headerElm.append(backHeader)

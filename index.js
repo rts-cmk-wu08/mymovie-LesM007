@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () =>{
 
-   
+    let popularPage = 1         //lazy loading skal vide hvor den skal starte
     let wrapper = document.querySelector("#wrapper")
     let imgpath = "https://image.tmdb.org/t/p/original"
     let baseURL = "https://api.themoviedb.org/3"
@@ -79,36 +79,63 @@ document.addEventListener("DOMContentLoaded", () =>{
     let popMovies = document.createElement("div")
     popElm.append(popMovies)
 
-    fetch(`${baseURL}/movie/popular?api_key=${key}`)
-        .then(response => response.json())
-        .then(data => {
+    function fetchPopluar (page) {
+        fetch(`${baseURL}/movie/popular?api_key=${key}&page=${page}`)
+            .then(response => response.json())
+            .then(data => {
 
-            console.log(data)
+                console.log(data)
 
-        data.results.forEach(result =>{
-            let link = document.createElement("a")
-            let rat = result.vote_average
-            let newRat = Math.round(rat* 10)/ 10
-            link.classList.add("pop_card")
-            link.setAttribute("href", `details.html?id=${result.id}`)
-            link.innerHTML = `
-            <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}" class="pop_img">
-            <div class="pop_info"><h3>${result.title}</h3>
-            <p><i class="fa-solid fa-star"></i>${newRat}/10 IMDb</p>
-            <p class="genres"></p></div>
-        `
-        popMovies.append(link)
+            data.results.forEach((result, index )=>{
+                let link = document.createElement("a")
+                let rat = result.vote_average
+                let newRat = Math.round(rat* 10)/ 10
+                link.classList.add("pop_card")
+                link.setAttribute("href", `details.html?id=${result.id}`)
+                link.innerHTML = `
+                <img src="/image/placeholder.gif" alt="movie poster ${result.title}" class="pop_img">
+                <div class="pop_info"><h3>${result.title}</h3>
+                <p><i class="fa-solid fa-star"></i>${newRat}/10 IMDb</p>
+                <p class="genres"></p></div>
+            `
+            popMovies.append(link)
 
-        let genButton = link.querySelector(".genres")
+            let imgElm = link.querySelector("img") //lazy loading start
+            //console.log(imgElm)
 
-        //console.log(genButton)
-        result.genre_ids.forEach(id =>{
-            let genList = genres.find(genre => genre.id == id)
-            console.log(genList)
-            let genSpan = document.createElement("span")
-            genSpan.innerText = genList.name
-            genButton.append(genSpan)
+            let posterImg = new Image()
+            posterImg.src = `${imgpath+result.poster_path}`
+
+            posterImg.onload = () =>{
+                imgElm.src = posterImg.src
+            }                                      //lazy loading slut
+
+            let genButton = link.querySelector(".genres")
+
+            //console.log(genButton)
+            result.genre_ids.forEach(id =>{
+                let genList = genres.find(genre => genre.id == id)
+                console.log(genList)
+                let genSpan = document.createElement("span")
+                genSpan.innerText = genList.name
+                genButton.append(genSpan)
+                })
+
+            if (index === 18){                      //infinate scroll start
+                const intersectionObserver = new IntersectionObserver((entries) => {
+                    // If intersectionRatio is 0, the target is out of view
+                    // and we do not need to do anything.
+                    if (entries[0].intersectionRatio <= 0) return;
+
+                    popularPage++
+                    console.log('in the viewport');
+                    fetchPopluar(popularPage)
+                    intersectionObserver.unobserve(link)
+                  });
+                intersectionObserver.observe(link);
+            }
+            })
         })
-    })
-        })
-        });
+    }
+    fetchPopluar()                                  //infinate scroll slut
+});
