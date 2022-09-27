@@ -150,6 +150,11 @@ footer{
   font-family: 'Mulish', sans-serif;
   color: #9c9c9c;
 }
+.cast_info>div{
+  display: flex;
+  flex-direction: row;
+}
+
                          /* toggle switch darkmode */
 .switch {      
     position: relative;

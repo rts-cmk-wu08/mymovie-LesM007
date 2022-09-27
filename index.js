@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             link.classList.add("now_card")
             let rat = result.vote_average
             let newRat = Math.round(rat* 10)/ 10
-            link.setAttribute("href", `details.html?id=${result.id}`)        //id er bedre til videre
+            link.setAttribute("href", `details.html?id=${result.id}`)
             link.innerHTML = `
             <img src="${imgpath+result.poster_path}" alt="movie poster ${result.title}" class="now_img">
             <div class="now_info"><h3>${result.title}</h3>
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () =>{
                 genButton.append(genSpan)
                 })
 
-            if (index === 18){                      //infinate scroll start
+            if (index === 18){                      //infinite scroll start
                 const intersectionObserver = new IntersectionObserver((entries) => {
                     // If intersectionRatio is 0, the target is out of view
                     // and we do not need to do anything.
@@ -137,5 +137,5 @@ document.addEventListener("DOMContentLoaded", () =>{
             })
         })
     }
-    fetchPopluar()                                  //infinate scroll slut
+    fetchPopluar()                                  //infinite scroll slut
 });
