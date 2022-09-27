@@ -1,0 +1,240 @@
+/*font-family: 'Merriweather', serif;
+font-family: 'Mulish', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600&family=Mulish:wght@300;600&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    overflow-y: scroll;
+    -moz-scrollbars: vertical;
+}
+#wrapper{
+    background: #ffffff;
+    margin: 0 auto;
+    font-family: 'Merriweather', serif, 'Mulish', sans-serif;
+    padding: 1em;
+}
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+h1{
+  font-family: 'Mulish', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #110E47;
+}
+h2{
+    font-family: 'Merriweather', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #110E47;
+}
+h3{
+    font-family: 'Mulish', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #110E47;
+}
+a{
+    text-decoration: none;
+}
+footer{
+    background-color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    min-height: 60px;
+}
+.index_header{
+    font-family: 'Merriweather', serif;
+    color: #110E47;
+    font-size: 16px;
+    font-weight: 900;
+    padding: 0 1.5em;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 3em 1fr 3em;
+}
+.index_header>h1{
+    grid-column-start: 2;
+    text-align: center;
+}
+.now_playing>header, .pop_movie>header{
+    font-size: 16px;
+    font-weight: 900;
+    display: grid;
+    grid-template-columns: 1fr 4em;
+    align-items: center;
+   /* padding: 0 1.5em; */
+}
+.now_playing>div{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;    /* scroll horisontalt */
+}
+.now_card{
+    margin: 1%;
+    min-width: 143px;
+    min-height: 283px;
+}
+.now_card:first-child{
+    margin-left: 0;
+}
+.now_img, .pop_img {
+    border-radius: 3%;
+}
+.now_info{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    color: #9c9c9c;
+}
+.pop_movie>div{
+    display: flex;
+    flex-direction: column;
+}
+.pop_info{
+    font-family: 'Mulish', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #9c9c9c;
+}
+.pop_card{
+    display: flex;
+    flex-direction: row;
+}
+.pop_card:last-child{
+    margin-bottom: 5em;
+}
+.pop_img{
+    max-height: 120px;
+    max-width: 85px;
+}
+.genres>span{
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: #DBE3FF;
+    border-radius: 22px;
+    min-width: 61px;
+    min-height: 18px;
+}
+.genres>span>p{
+    color: #88A4E8;
+    font-size: 10px;
+    font-weight: 300;
+
+}
+.detail_img{
+    min-height: 300px;
+}
+.detail_header{
+    position: fixed;
+    display: flex;
+}
+.detail_overview{
+  font-family: 'Mulish', sans-serif;
+  color: #9c9c9c;
+  font-weight: 300;
+}
+.detail_specs{
+  font-family: 'Mulish', sans-serif;
+  color: #9c9c9c;
+}
+.cast_info>div{
+  display: flex;
+  flex-direction: row;
+}
+
+                         /* toggle switch darkmode */
+.switch {      
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 21px;
+    margin-left: auto;
+  }
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #AAA9B1;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  input:checked + .slider {
+    background-color: #AAA9B1;
+  }
+  input:focus + .slider {
+    box-shadow: 0 0 1px #AAA9B1;
+  }
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 22px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  }
+                        /* toggle switch slut*/
+  .btn{
+    border: 1px solid;
+    border-radius: 22px;
+    font-family: 'Mulish', sans-serif;
+    background-color: #ffffff;
+    font-size: 10px;
+    font-weight: 300;
+    border-color: #AAA9B1;
+    justify-self: end;
+    padding: 0.2rem 0.5rem;
+  }
+
+                        /* font awesome icons */
+  .fa-solid.fa-star{
+    color: #FFC319;
+    display: inline-block;
+    size: 12px;
+  }
+  .fa-solid.fa-film{
+    color: #110E47;
+    padding: 1rem 0.5rem;
+  } 
+  .fa-regular.fa-ticket, .fa-regular.fa-bookmark{
+    color: #9c9c9c;
+    padding: 1rem 0.5rem;
+  }
+  .fa-solid.fa-arrow-left-long{
+    color: #ffffff;
+  }
