@@ -6,6 +6,14 @@ let setActiveStyleSheet = function(title){          // title refererer til title
     //console.log(stylesheets)
 
     stylesheets.forEach(sheet => sheet.disabled = true);
+    let selector = `link[title="${title}"]`;
+    //console.log(selector)
+
+    let activeSheet = document.querySelector(selector);
+    //console.log(activeSheet)
+    activeSheet.disabled = false;
 }
-setActiveStyleSheet()
+setActiveStyleSheet('light')
+
+
 })
