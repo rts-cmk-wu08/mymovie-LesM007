@@ -93,8 +93,11 @@ document.addEventListener("DOMContentLoaded", () =>{
         let detailCast = document.createElement("section")
         detailCast.classList.add("cast_info")
             detailCast.innerHTML=`
-            <h2>Cast</h2>
-            <a class="btn" href>See more</a>`
+            <div><h2>Cast</h2>
+            <a class="btn" href>See more</a></div>
+            `
+
+
 
     fetch(`${baseURL}/movie/${movie_id}/credits?api_key=${key}`)
         .then(response => response.json())
@@ -102,16 +105,16 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     //console.log(castData)
 
-       
+        let castInfo = document.createElement("div")
+        detailCast.append(castInfo)
         castData.cast.forEach(actor => {
             let castSpan = document.createElement("a")
             castSpan.innerHTML =`
-            <div><img src="${imgpath+actor.name.profile_path}" alt="${actor.name}">
-            <p>${actor.name}</p></div>
+            <img src="${imgpath+actor.name.profile_path}" alt="${actor.name}">
+            <p>${actor.name}</p>
             `
-            detailCast.append(castSpan)
+            castInfo.append(castSpan)
     });
-
-    detailElm.append(detailCast)
+        detailElm.append(detailCast)
     })
 })
